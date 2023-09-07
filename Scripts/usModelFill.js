@@ -291,36 +291,36 @@ async function newCombo(state, plate) {
   			url += state.toLowerCase() + '.php?b1=' + plate.substr(4,1) + '&b2=' + plate.substr(5,1) + '&b3=' + plate.substr(6,1) + type + '&posted=1&Submit=';
   			break;
   	}
-  } //else if (state == "WI") {
-  // 	let form = checkFormats(plate, ["123ABC", "ABC1234"]);
-  // 	switch (form) {
-  // 		case 2:
-  // 			url += state.toLowerCase() + '.php?b1=' + plate.substr(4,1) + '&b2=' + plate.substr(5,1) + '&b3=' + plate.substr(6,1) + '&posted=1&Submit=';
-  // 			break;
-  // 		case 3:
-  // 			url += state.toLowerCase() + '1.php?b1=' + plate.substr(0,1) + '&b2=' + plate.substr(1,1) + '&b3=' + plate.substr(2,1) + '&posted=1&Submit=';
-  // 			break;
-  // 	}
-  // } else if (state == "TN") {
-  // 	let form = checkFormats(plate, ["ABC123", "123ABC", "ABC1234"]);
-  // 	switch (form) {
-  // 		case 1:
-  // 			if (/[-]/.test(plate)) {
-  // 				type += "801";
-  // 				url += state.toLowerCase() + '.php?b1=' + plate.substr(0,1) + '&b2=' + plate.substr(1,1) + '&b3=' + plate.substr(2,1) + type + '&posted=1&Submit=';
-  // 			}
-  // 			break;
-  // 		case 2:
-  // 			if (/[-]/.test(plate)) {
-  // 				type += "804";
-  // 				url += state.toLowerCase() + '.php?b1=' + plate.substr(4,1) + '&b2=' + plate.substr(5,1) + '&b3=' + plate.substr(6,1) + type + '&posted=1&Submit=';
-  // 			}
-  // 			break;
-  // 		case 3:
-  // 			url += state.toLowerCase() + '1.php?b1=' + plate.substr(0,1) + '&b2=' + plate.substr(1,1) + '&b3=' + plate.substr(2,1) + '&posted=1&Submit=';
-  // 			break;
-  // 	}
-  // }
+  } else if (state == "WI") {
+  	let form = checkFormats(plate, ["123ABC", "ABC1234"]);
+  	switch (form) {
+  		case 2:
+  			url += state.toLowerCase() + '.php?b1=' + plate.substr(4,1) + '&b2=' + plate.substr(5,1) + '&b3=' + plate.substr(6,1) + '&posted=1&Submit=';
+  			break;
+  		case 3:
+  			url += state.toLowerCase() + '1.php?b1=' + plate.substr(0,1) + '&b2=' + plate.substr(1,1) + '&b3=' + plate.substr(2,1) + '&posted=1&Submit=';
+  			break;
+  	}
+  } else if (state == "TN") {
+  	let form = checkFormats(plate, ["ABC123", "123ABC", "ABC1234"]);
+  	switch (form) {
+  		case 1:
+  			if (/[-]/.test(plate)) {
+  				type += "801";
+  				url += state.toLowerCase() + '.php?b1=' + plate.substr(0,1) + '&b2=' + plate.substr(1,1) + '&b3=' + plate.substr(2,1) + type + '&posted=1&Submit=';
+  			}
+  			break;
+  		case 2:
+  			if (/[-]/.test(plate)) {
+  				type += "804";
+  				url += state.toLowerCase() + '.php?b1=' + plate.substr(4,1) + '&b2=' + plate.substr(5,1) + '&b3=' + plate.substr(6,1) + type + '&posted=1&Submit=';
+  			}
+  			break;
+  		case 3:
+  			url += state.toLowerCase() + '1.php?b1=' + plate.substr(0,1) + '&b2=' + plate.substr(1,1) + '&b3=' + plate.substr(2,1) + '&posted=1&Submit=';
+  			break;
+  	}
+  }
   console.log(url);
   try {
     let response = await fetch(url, {
