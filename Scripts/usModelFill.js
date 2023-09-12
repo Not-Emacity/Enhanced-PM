@@ -150,6 +150,7 @@ async function runPlate() {
 	console.log(vehicle);
 
 	$('#markamodtype').val(vehicle.make + ' ' + vehicle.model).autocomplete('search', vehicle.make + ' ' + vehicle.model);
+	document.querySelector("#frm > fieldset:nth-child(3) > section:nth-child(6) > label").textContent = "Specify brand and model of vehicle: " + vehicle.year;
 
 	let count = await newCombo(state, plate);
 	if (count == "Element not found in HTML" || count == "Error") {
@@ -203,14 +204,14 @@ async function newCombo(state, plate) {
   				url += state.toLowerCase() + '.php?b1=' + plate.substr(0,1) + '&b2=' + plate.substr(1,1) + '&b3=' + plate.substr(2,1) + '&b4=' + plate.substr(3,1) + '&posted=1&Submit=';
   				break;
   			case 3:
-  				if (/[-\s]/.test(plate)) {
+  				if (isHyphen(plate)) {
   					url += state.toLowerCase() + '.php?b1=' + plate.substr(4,1) + '&b2=' + plate.substr(5,1) + '&b3=' + plate.substr(6,1) + '&posted=1&Submit=';
   				} else {
   					url += state.toLowerCase() + '.php?b1=' + plate.substr(3,1) + '&b2=' + plate.substr(4,1) + '&b3=' + plate.substr(5,1) + '&posted=1&Submit=';
   				}
   				break;
   			case 5:
-  				if (/[-\s]/.test(plate)) {
+  				if (isHyphen(plate)) {
   					url += state.toLowerCase() + '.php?b1=' + plate.substr(5,1) + '&b2=' + plate.substr(6,1) + '&posted=1&Submit=';
   				} else {
   					url += state.toLowerCase() + '.php?b1=' + plate.substr(4,1) + '&b2=' + plate.substr(5,1) + '&posted=1&Submit=';
