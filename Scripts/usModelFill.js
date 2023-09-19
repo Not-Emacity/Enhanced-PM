@@ -164,7 +164,7 @@ async function runPlate() {
 
 async function decode(state, plate) {
 	try {
-		let response = await fetch('https://untruebigdecimalsnew.notemacity.repl.co/api', {
+		let response = await fetch('https://untrue-big-decimals.vercel.app/api', {
   		method: 'POST',
   		headers: {
   		  'state': state,
