@@ -1,8 +1,7 @@
 // @name        Auto Tags
 // @version     1.0
 // @author      Emacity
-// @namespace   Violentmonkey Scripts
-// @description Automatically applies Hybrid/EV and Bus tags to select models
+// @description Automatically applies [DEPRECATED] and Bus tags to select models
 
 (function() {
   'use strict';
@@ -118,7 +117,9 @@
     "Van Hool",
     "Prevost",
     "NABI",
-    "Gillig"
+    "Gillig",
+    "MCI",
+    "Blue Bird"
   ]);
 
   //ADD BRAND EXCLUSIONS FOR BUS HERE
@@ -133,22 +134,22 @@
 
   console.log("Working!");
   document.querySelector(model).onchange = function() {
-    checkEV();
+    // checkEV();
     checkBus();
     changeModel(document.querySelector(model).value);
   };
 
-  function checkEV() {
-    if (evModels.has(document.querySelector(model).options[document.querySelector(model).selectedIndex].text) && !evExceptions.has(document.querySelector(make).options[document.querySelector(make).selectedIndex].text)) {
-      document.querySelector(electric).checked = true;
+  // function checkEV() {
+  //   if (evModels.has(document.querySelector(model).options[document.querySelector(model).selectedIndex].text) && !evExceptions.has(document.querySelector(make).options[document.querySelector(make).selectedIndex].text)) {
+  //     document.querySelector(electric).checked = true;
 
-    } else if (evMakes.has(document.querySelector(make).options[document.querySelector(make).selectedIndex].text)) {
-      document.querySelector(electric).checked = true;
+  //   } else if (evMakes.has(document.querySelector(make).options[document.querySelector(make).selectedIndex].text)) {
+  //     document.querySelector(electric).checked = true;
 
-    } else {
-      document.querySelector(electric).checked = false;
-    }
-  };
+  //   } else {
+  //     document.querySelector(electric).checked = false;
+  //   }
+  // };
 
   function checkBus() {
     if (busModels.has(document.querySelector(model).options[document.querySelector(model).selectedIndex].text) && !busExceptions.has(document.querySelector(make).options[document.querySelector(make).selectedIndex].text)) {

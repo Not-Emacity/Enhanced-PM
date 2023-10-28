@@ -18,7 +18,6 @@ const singleFormats = new Map([
 	["IL", "X12 3456"],
 	["AR", "123ABC"],
 	["CT", "123ABC"],
-	["ME", "1234AB"],
 	["DC", "AB1234"],
 	["CA", "1ABC234"]
 ]);
@@ -43,7 +42,8 @@ const multiFormats = new Map([
 	["NV", ["ABC123", "123ABC", "12A345", "123A45"]],
 	["IN", ["ABC123", "123ABC", "123AB", "123A"]],
 	//Separate tables for ABC123 hyphenated
-	["KY", ["ABC123", "123ABC", "A1B234"]]
+	["KY", ["ABC123", "123ABC", "A1B234"]],
+	["ME", ["1234AB", "123ABC"]]
 ]);
 
 const sixDigit = new Map([
@@ -83,6 +83,50 @@ const sevenDigit = new Map([
 	["GA", "91"],
 	["VA", "61"],
 	["MI", "83"]
+]);
+
+const modelCorrections = new Map([
+	["Giulia (952)", "Giulia"],
+	["124 Spider", "124"],
+	["740-series", "740"],
+	["New Superbike (SBK)", "Panigale"],
+	["SS900/900 SPORT", "MH900e"],
+	["X 1/9", "X1/9"],
+	["790/890 Duke, R", "Duke"],
+	["548CH", "T270"],
+	["XJ6", "XJ"],
+	["XJ8", "XJ"],
+	["Captiva Sport", "Captiva"],
+	["LF627", "ProStar"],
+	["Bolt EV", "Bolt"],
+	["4-Runner", "4Runner"],
+	["CST120", "Century"],
+	["PB105", "CE"],
+	["YZF-R1", "YZF"]
+]);
+
+const makeCorrections = new Map([
+	["VOLVO TRUCK", "Volvo"],
+	["IC BUS", "IC"],
+	["UTILITY TRAILER MANUFACTURER", "Utility"],
+	["WABASH VANS", "Wabash"],
+	["WABASH", "Wabash"],
+	["HYUNDAI TRANSLEAD TRAILERS", "Translead"],
+	["FONTAINE TRAILER CO.", "Fontaine"],
+	["GREAT DANE TRAILERS", "Great Dane Trailers"]
+]);
+
+const trailerMakes = new Set([
+	"Utility",
+	"Wabash",
+	"Fontaine",
+	"Reitnouer",
+	"Cimc",
+	"Vanguard National",
+	"Stoughton Trailers",
+	"Manac",
+	"Translead",
+	"Great Dane Trailers"
 ]);
 
 async function runPlate() {
@@ -147,7 +191,26 @@ async function runPlate() {
 	console.log(state);
 	console.log(plate);
 	let vehicle = await decode(state, plate);
-	console.log(vehicle);
+	// console.log(vehicle);
+	// console.log(vehicle.model);
+	if (vehicle.make != undefined) {
+		if (makeCorrections.has(vehicle.make)) {
+			vehicle.make = makeCorrections.get(vehicle.make);
+			if (trailerMakes.has(vehicle.make)) {
+				vehicle.model = "";
+			}
+		}
+	}
+	if (vehicle.model != undefined) {
+		if (modelCorrections.has(vehicle.model)) {
+			vehicle.model = modelCorrections.get(vehicle.model);
+		} else if (vehicle.model.substr(0,6) == "SCION " || vehicle.model.substr(0,6) == "Scion ") {
+			vehicle.make = "SCION";
+			vehicle.model = vehicle.model.substr(6);
+		}
+	}
+	
+	
 
 	$('#markamodtype').val(vehicle.make + ' ' + vehicle.model).autocomplete('search', vehicle.make + ' ' + vehicle.model);
 	document.querySelector("#frm > fieldset:nth-child(3) > section:nth-child(6) > label").textContent = "Specify brand and model of vehicle: " + vehicle.year;
@@ -164,7 +227,7 @@ async function runPlate() {
 
 async function decode(state, plate) {
 	try {
-		let response = await fetch('https://untrue-big-decimals.vercel.app/api', {
+		let response = await fetch('https://plate2vin.vercel.app/api', {
   		method: 'POST',
   		headers: {
   		  'state': state,
@@ -243,6 +306,8 @@ async function newCombo(state, plate) {
   				} else {
   					type += "205"
   				}
+  			} else if (state == "ME") {
+  				url += state.toLowerCase() + '2.php?b1=' + plate.substr(4,1) + '&b2=' + plate.substr(5,1) + '&b3=' + plate.substr(6,1) + '&posted=1&Submit=';
   			} else {
   				type += sixDigitFlip.get(state);
   			}
@@ -291,6 +356,8 @@ async function newCombo(state, plate) {
   			type += "203";
   			url += state.toLowerCase() + '.php?b1=' + plate.substr(4,1) + '&b2=' + plate.substr(5,1) + '&b3=' + plate.substr(6,1) + type + '&posted=1&Submit=';
   			break;
+  		case 11:
+  			url += state.toLowerCase() + '.php?b1=' + plate.substr(5,1) + '&b2=' + plate.substr(6,1) + '&posted=1&Submit=';
   	}
   } else if (state == "WI") {
   	let form = checkFormats(plate, ["123ABC", "ABC1234"]);
@@ -394,6 +461,10 @@ function checkFormats(plate, formats) {
 				if (/^\d{3}[-\s]?[a-zA-Z]{1}\d{2}$/) {
 					return 10;
 				} else continue;
+			case "1234AB":
+			if (/^\d{4}[-\s]?[a-zA-Z]{2}$/.test(plate)) {
+				return 11;
+			} else continue;
 			default:
 				return 0;
 		}
@@ -418,10 +489,6 @@ function checkFormat(plate, format) {
 		case "AB1234":
 			if (/^[a-zA-Z]{2}[-\s]?\d{4}$/.test(plate)) {
 				return 4;
-			} else return 0;
-		case "1234AB":
-			if (/^\d{4}[-\s]?[a-zA-Z]{2}$/.test(plate)) {
-				return 5;
 			} else return 0;
 		case "1ABC234":
 			if (/^\d{1}[a-zA-Z]{3}\d{3}$/.test(plate)) {

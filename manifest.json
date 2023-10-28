@@ -15,6 +15,14 @@
 	 {
 		"matches": ["https://platesmania.com/*/add"],
 		"js": ["/Scripts/showHiddenTags.js", "injectGlobal.js"]
+	},
+	 {
+	 	"matches": ["https://platesmania.com/search"],
+	 	"js": ["injectSearch.js"]
+	 },
+	 {
+		"matches": ["https://platesmania.com/*"],
+		"css": ["/Scripts/editButton.css"]
 	}],
 	"background": {
 		"scripts": ["background.js"]
@@ -23,5 +31,5 @@
 		"cookies",
 		"https://platesmania.com/*"
 	],
-	"web_accessible_resources" : ["/Scripts/autoTags.js", "/Scripts/usModelFill.js"]
+	"web_accessible_resources" : ["/Scripts/autoTags.js", "/Scripts/usModelFill.js", "/Scripts/leaderboard.js"]
 }
