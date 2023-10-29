@@ -58,7 +58,7 @@ async function runPlate() {
 
 async function decode(plate) {
 	try {
-		let response = await fetch('http://localhost:8080/api_PL', {
+		let response = await fetch('https://plate2vin.vercel.app/api_PL', {
   		method: 'POST',
   		headers: {
   		  'plate': plate
