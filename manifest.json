@@ -2,19 +2,17 @@
 	"manifest_version": 2,
 	"name": "Enhanced PM",
 	"description": "Tweaks and features to make uploading to PM almost tolerable",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"author": "Emacity",
-	"content_scripts": [{
-		"matches": ["https://platesmania.com/us/add"],
-		"js": ["injectUS.js"]
-	},
+	"content_scripts": [
+
 	 {
 		"matches": ["https://platesmania.com/se/add"],
 		"js": ["/Scripts/swedishFormats.js"]
 	},
 	 {
 		"matches": ["https://platesmania.com/*/add"],
-		"js": ["/Scripts/showHiddenTags.js", "injectGlobal.js"]
+		"js": ["/Scripts/showHiddenTags.js", "injectGlobal.js", "injectCombination.js"]
 	},
 	 {
 	 	"matches": ["https://platesmania.com/search"],
@@ -28,8 +26,9 @@
 		"scripts": ["background.js"]
 	},
 	"permissions": [
+		"runtime",
 		"cookies",
 		"https://platesmania.com/*"
 	],
-	"web_accessible_resources" : ["/Scripts/autoTags.js", "/Scripts/usModelFill.js", "/Scripts/leaderboard.js"]
+	"web_accessible_resources" : ["/Scripts/autoTags.js", "/Scripts/*ModelFill.js", "/Scripts/maps.js"]
 }
