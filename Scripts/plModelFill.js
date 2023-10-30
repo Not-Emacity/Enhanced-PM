@@ -85,7 +85,7 @@ async function newCombo(type, region, nomer) {
   	url = 'https://platesmania.com/pl/result2.php?tip=6&region2=' + region + '&b1='+ nomer + '&posted=1&Submit='
   } else if (type == 7) {
   	url = 'https://platesmania.com/pl/result2.php?tip=7&region1=' + region + '&b1='+ nomer + '&posted=1&Submit='
-  } else return -1;
+  } else return 1;
   console.log(url);
   try {
     let response = await fetch(url, {

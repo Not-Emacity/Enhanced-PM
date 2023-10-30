@@ -5,19 +5,18 @@
 	"version": "0.0.4",
 	"author": "Emacity",
 	"content_scripts": [
-
+	 {
+	 	"matches": ["https://platesmania.com/us/add"],
+	 	"js": ["injectGlobal.js"]
+	 },
 	 {
 		"matches": ["https://platesmania.com/se/add"],
 		"js": ["/Scripts/swedishFormats.js"]
 	},
 	 {
 		"matches": ["https://platesmania.com/*/add"],
-		"js": ["/Scripts/showHiddenTags.js", "injectGlobal.js", "injectCombination.js"]
+		"js": ["/Scripts/showHiddenTags.js", "injectCombination.js"]
 	},
-	 {
-	 	"matches": ["https://platesmania.com/search"],
-	 	"js": ["injectSearch.js"]
-	 },
 	 {
 		"matches": ["https://platesmania.com/*"],
 		"css": ["/Scripts/editButton.css"]
