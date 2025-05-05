@@ -6,16 +6,20 @@
 	"author": "Emacity",
 	"content_scripts": [
 	 {
-	 	"matches": ["https://platesmania.com/us/add"],
+	 	"matches": ["https://platesmania.com/us/add*"],
 	 	"js": ["injectGlobal.js"]
 	 },
 	 {
-		"matches": ["https://platesmania.com/se/add"],
+		"matches": ["https://platesmania.com/se/add*"],
 		"js": ["/Scripts/swedishFormats.js"]
 	},
 	 {
-		"matches": ["https://platesmania.com/*/add"],
+		"matches": ["https://platesmania.com/*/add*"],
 		"js": ["/Scripts/showHiddenTags.js", "injectCombination.js"]
+	},
+	 {
+	 	"matches": ["https://platesmania.com/*/informer"],
+	 	"js": ["/Scripts/base64.js"]
 	},
 	 {
 		"matches": ["https://platesmania.com/*"],
@@ -27,7 +31,10 @@
 	"permissions": [
 		"runtime",
 		"cookies",
-		"https://platesmania.com/*"
+		"activeTab",
+		"clipboardWrite",
+		"https://platesmania.com/*",
+		"https://img03.platesmania.com/*"
 	],
 	"web_accessible_resources" : ["/Scripts/autoTags.js", "/Scripts/*ModelFill.js", "/Scripts/maps.js"]
 }

@@ -1,20 +1,20 @@
-// import { makeCorrections } from 'Scripts/maps.js';
-
-// Handle communication with content scripts
-// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-//     if (message.type === 'getCorrections') {
-//         sendResponse({ corrections: makeCorrections });
-//     }
-// });
-
-
 console.log("background running");
 
-chrome.browserAction.onClicked.addListener(buttonClick);
-
-function buttonClick(tab) {
-	let msg = {
-		txt: "hello"
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+	if (request.action === "fetchImageBase64") {
+		fetch(request.url)
+			.then(res => res.blob())
+			.then(blob => {
+				const reader = new FileReader();
+				reader.onloadend = () => {
+					sendResponse({ base64: reader.result });
+				};
+				reader.readAsDataURL(blob);
+			})
+			.catch(err => {
+				console.error("Fetch failed:", err);
+				sendResponse({ base64: null });
+			});
+		return true;
 	}
-	chrome.tabs.sendMessage(tab.id, msg);
-}
+});
