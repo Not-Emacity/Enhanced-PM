@@ -30,8 +30,10 @@ const modelCorrections = new Map([
 	["4-Runner", "4Runner"],
 	["CST120", "Century"],
 	["PB105", "CE"],
+	["PB305", "RE"],
 	["YZF-R1", "YZF"],
 	["L125 (Monkey)", "Monkey"],
+	["Z125 (Monkey)", "Monkey"],
 	["LA687", "ProStar"],
 	["NISSAN Z", "Z"],
 	["LT62F", "LT"],
@@ -41,7 +43,14 @@ const modelCorrections = new Map([
 	["MA025", "DuraStar"],
 	["EQB-Class", "EQB"],
 	["BB Conventional", "Vision"],
-	["USF-1E", "FLD"]
+	["USF-1E", "FLD"],
+	["W9 Series", "W900"],
+	["CC Conventional", "Century Class"],
+	["FLD120", "FLD SD"],
+	["Long Conv.", "FLD Conventional"],
+	["Classic", "FLD Classic"],
+	["FLD132", "FLD Classic XL"],
+	["T8 Series", "T800"]
 ]);
 
 const trailerMakes = new Set([
