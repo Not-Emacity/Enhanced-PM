@@ -167,6 +167,8 @@ async function runPlate() {
 			vehicle.model = vehicle.model.substr(6);
 		} else if (vehicle.make == "FREIGHTLINER" && vehicle.model == "M2") {
 			vehicle.model = "Business Class";
+		} else if (vehicle.make == "INTERNATIONAL" && vehicle.model == "MA025") {
+			vehicle.model = "DuraStar";
 		} else if (vehicle.make == "MERCEDES-BENZ" && vehicle.model.includes("Class")) {
 			vehicle.model = vehicle.model.replace("Class", "Klasse");
 		} else if (vehicle.make == "BMW" && (vehicle.model.length == 4 || vehicle.model.length == 5) && /^[M]?\d{3}[a-z][CLs]?(\/[M]?\d{3}[a-z][CLs]?)?$/.test(vehicle.model)) {
