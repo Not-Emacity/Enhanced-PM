@@ -165,6 +165,41 @@ async function runPlate() {
 		} else if (vehicle.model.substr(0,6) == "SCION " || vehicle.model.substr(0,6) == "Scion ") {
 			vehicle.make = "SCION";
 			vehicle.model = vehicle.model.substr(6);
+		} else if (vehicle.make == "FREIGHTLINER" && vehicle.model == "M2") {
+			vehicle.model = "Business Class";
+		} else if (vehicle.make == "MERCEDES-BENZ" && vehicle.model.includes("Class")) {
+			vehicle.model = vehicle.model.replace("Class", "Klasse");
+		} else if (vehicle.make == "BMW" && (vehicle.model.length == 4 || vehicle.model.length == 5) && /^[M]?\d{3}[a-z][CLs]?(\/[M]?\d{3}[a-z][CLs]?)?$/.test(vehicle.model)) {
+			switch (parseInt(vehicle.model.charAt(0))) {
+				case 1:
+					vehicle.model = "1 Series";
+					break;
+				case 2:
+					vehicle.model = "2 Series";
+					break;
+				case 3:
+					vehicle.model = "3 Series";
+					break;
+				case 4:
+					vehicle.model = "4 Series";
+					break;
+				case 5:
+					vehicle.model = "5 Series";
+					break;
+				case 6:
+					vehicle.model = "6 Series";
+					break;
+				case 7:
+					vehicle.model = "7 Series";
+					break;
+				case 8:
+					vehicle.model = "8 Series";
+					break;
+			}
+		} else if (vehicle.make == "POLESTAR") {
+			vehicle.model = vehicle.model.replace("PS", "");
+		} else if (vehicle.make == "MAZDA") {
+			vehicle.model = vehicle.model.replace("Mazda", "");
 		}
 	}
 	
