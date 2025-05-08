@@ -27,7 +27,6 @@
               <label class="checkbox-inline"><input id="CheckBox15" name="CheckBox[15]" type="checkbox"> fire appliance</label>
               <label class="checkbox-inline"><input id="CheckBox42" name="CheckBox[42]" type="checkbox"> garbage truck</label>
               <label class="checkbox-inline"><input id="CheckBox58" name="CheckBox[58]" type="checkbox"> hearse</label>
-              <label class="checkbox-inline"><input id="CheckBox36" name="CheckBox[36]" type="checkbox"> hybrid/electric vehicle</label>
               <label class="checkbox-inline"><input id="CheckBox27" name="CheckBox[27]" type="checkbox"> improper parking</label>
               <label class="checkbox-inline"><input id="CheckBox9" name="CheckBox[9]" type="checkbox"> limousine</label>
               <label class="checkbox-inline"><input id="CheckBox57" name="CheckBox[57]" type="checkbox"> motorcycle</label>
