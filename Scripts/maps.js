@@ -50,7 +50,8 @@ const modelCorrections = new Map([
 	["Long Conv.", "FLD Conventional"],
 	["Classic", "FLD Classic"],
 	["FLD132", "FLD Classic XL"],
-	["T8 Series", "T800"]
+	["T8 Series", "T800"],
+	["TA005", "TerraStar"]
 ]);
 
 const trailerMakes = new Set([
