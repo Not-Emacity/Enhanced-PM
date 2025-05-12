@@ -27,6 +27,7 @@
               <label class="checkbox-inline"><input id="CheckBox15" name="CheckBox[15]" type="checkbox"> fire appliance</label>
               <label class="checkbox-inline"><input id="CheckBox42" name="CheckBox[42]" type="checkbox"> garbage truck</label>
               <label class="checkbox-inline"><input id="CheckBox58" name="CheckBox[58]" type="checkbox"> hearse</label>
+              <label class="checkbox-inline"><input id="CheckBox36" name="CheckBox[36]" type="checkbox"> hybrid/electric vehicle</label>
               <label class="checkbox-inline"><input id="CheckBox27" name="CheckBox[27]" type="checkbox"> improper parking</label>
               <label class="checkbox-inline"><input id="CheckBox9" name="CheckBox[9]" type="checkbox"> limousine</label>
               <label class="checkbox-inline"><input id="CheckBox57" name="CheckBox[57]" type="checkbox"> motorcycle</label>
@@ -48,7 +49,7 @@
               <label class="checkbox-inline"><input id="CheckBox25" name="CheckBox[25]" type="checkbox"> transferred/re-issued plate</label>
               <label class="checkbox-inline"><input id="CheckBox22" name="CheckBox[22]" type="checkbox"> truck</label>
               <label class="checkbox-inline"><input id="CheckBox37" name="CheckBox[37]" type="checkbox"> truck-mounted crane</label>
-              <label class="checkbox-inline"><input id="CheckBox6" name="CheckBox[6]" type="checkbox"> vehicle with flashers, w/o livery</label>
+              <label class="checkbox-inline"><input id="CheckBox6" name="CheckBox[6]" type="checkbox"> unmarked with emergency lights</label>
               <label class="checkbox-inline"><input id="CheckBox44" name="CheckBox[44]" type="checkbox"> vinyl wrapping</label>
               <label class="checkbox-inline"><input id="CheckBox48" name="CheckBox[48]" type="checkbox"> wedding car</label>
               <label class="checkbox-inline"><input id="CheckBox10" name="CheckBox[10]" type="checkbox"> oldtimer</label>
