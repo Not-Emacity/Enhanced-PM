@@ -51,7 +51,8 @@ const modelCorrections = new Map([
 	["Classic", "FLD Classic"],
 	["FLD132", "FLD Classic XL"],
 	["T8 Series", "T800"],
-	["TA005", "TerraStar"]
+	["TA005", "TerraStar"],
+	["Corolla Matrix", "Matrix"]
 ]);
 
 const trailerMakes = new Set([
